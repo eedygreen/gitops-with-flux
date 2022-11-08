@@ -1,0 +1,25 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: testing
+  namespace: flux-system
+spec:
+  interval: 30s
+  url: https://github.com/eedygreen/gitops-with-flux
+  ref:
+    branch: main
+
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha1
+kind: Terraform
+metadata:
+  name: testing
+  namespace: flux-system
+spec:
+  interval: 1m
+  approvePlan: auto
+  path: ./tf-app
+  sourceRef:
+    kind: GitRepository
+    name: testing
+    namespace: flux-system
