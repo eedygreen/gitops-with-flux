@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  url: ssh://git@github.com/eedygreen/gitops-with-flux
+  url: https://github.com/eedygreen/gitops-with-flux
   ref:
     branch: main
 
