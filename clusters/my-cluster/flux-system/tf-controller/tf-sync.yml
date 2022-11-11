@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  url: https://github.com/eedygreen/terraform-controller
+  url: https://github.com/eedygreen/gitops-with-flux
   ref:
     branch: main
 
@@ -18,7 +18,7 @@ metadata:
 spec:
   interval: 1m
   approvePlan: auto
-  path: ./
+  path: ./tf-app
   sourceRef:
     kind: GitRepository
     name: testing
