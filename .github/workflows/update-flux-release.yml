@@ -8,12 +8,23 @@ on:
         required: true
         default: 'stable' 
         type: string
-  
+      token: 
+        description: 'Authentication token'
+        required: true
+        type: string
 
 jobs:
   components:
     runs-on: ubuntu-latest
     steps:
+      - name: Authentication
+        run: |
+          if [[ ${{ secrets.Auth_token }} ]] == [[ ${{ github.event.inputs.token }} ]]; then
+            echo 'Athentication Succeeded!'
+          else
+            echo 'Authentcation failed. Exiting...'
+            exit 1
+          fi
       - name: Check out code
         uses: actions/checkout@v2
       - name: Setup Flux CLI
