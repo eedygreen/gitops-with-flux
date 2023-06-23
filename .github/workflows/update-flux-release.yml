@@ -18,13 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Authentication
+        id: auth
         run: |
-          if [[ ${{ secrets.Auth_token }} == ${{ github.event.inputs.token }} ]]; then
-            echo "Athentication Succeeded!"
-          else
+          if [ "${{ secrets.Auth_token }}" != "::add-mask::${{ github.event.inputs.token }}" ]; then
             echo "Authentcation failed. Exiting..."
             exit 1
           fi
+      - name: Continue
+        if: steps.auth.outcome == 'success'
+        run: |
+          echo 'Authentication Succeeded!!!'
       - name: Check out code
         uses: actions/checkout@v2
       - name: Setup Flux CLI
