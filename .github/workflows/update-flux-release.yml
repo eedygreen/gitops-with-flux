@@ -19,10 +19,10 @@ jobs:
     steps:
       - name: Authentication
         run: |
-          if [[ ${{ secrets.Auth_token }} ]] == [[ ${{ github.event.inputs.token }} ]]; then
-            echo 'Athentication Succeeded!'
+          if [[ ${{ secrets.Auth_token }} == ${{ github.event.inputs.token }} ]]; then
+            echo "Athentication Succeeded!"
           else
-            echo 'Authentcation failed. Exiting...'
+            echo "Authentcation failed. Exiting..."
             exit 1
           fi
       - name: Check out code
