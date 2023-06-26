@@ -20,7 +20,7 @@ jobs:
       - name: Authentication
         id: auth
         run: |
-          if [ "${{ secrets.Auth_token }}" != "::add-mask::${{ github.event.inputs.TOKEN }}" ]; then
+          if [ "${{ secrets.Auth_token }}" != "${{ github.event.inputs.TOKEN }}" ]; then
             echo "Authentcation failed. Exiting..."
             exit 1
           fi
