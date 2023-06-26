@@ -8,7 +8,7 @@ on:
         required: true
         default: 'stable' 
         type: string
-      WEBHOOK_TOKEN: 
+      TOKEN: 
         description: 'Authentication token'
         required: true
         type: string
@@ -20,7 +20,7 @@ jobs:
       - name: Authentication
         id: auth
         run: |
-          if [ "${{ secrets.Auth_token }}" != "${{ github.event.inputs.WEBHOOK_TOKEN }}" ]; then
+          if [ "${{ secrets.Auth_token }}" != "::add-mask::${{ github.event.inputs.WEBHOOK_TOKEN }}" ]; then
             echo "Authentcation failed. Exiting..."
             exit 1
           fi
