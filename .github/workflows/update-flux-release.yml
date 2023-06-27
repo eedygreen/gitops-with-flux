@@ -3,7 +3,7 @@ name: update-flux
 on:
   push:
     tags:
-      - release*
+      - release-v?.?
   # workflow_dispatch:
   #   inputs:
   #     release_tag:
