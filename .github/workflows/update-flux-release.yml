@@ -1,17 +1,20 @@
 name: update-flux
 
 on:
-  workflow_dispatch:
-    inputs:
-      release_tag:
-        description: 'Release tag'
-        required: true
-        default: 'stable' 
-        type: string
-      TOKEN: 
-        description: 'Authentication token'
-        required: true
-        type: string
+  push:
+    tags:
+      - release*
+  # workflow_dispatch:
+  #   inputs:
+  #     release_tag:
+  #       description: 'Release tag'
+  #       required: true
+  #       default: 'stable' 
+  #       type: string
+  #     TOKEN: 
+  #       description: 'Authentication token'
+  #       required: true
+  #       type: string
 
 jobs:
   components:
